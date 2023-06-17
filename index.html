@@ -13,75 +13,107 @@
         <h1 class="main_title">Book Check</h1>
         <a href="data_view.html"><button id="dataButton">Data</button></a>
     </div>
-    <table class="data_table">
-        <tr>
-            <td>
-                <label for="author">Author:</label>
-                <input type="text" id="author" name="author" required>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required>
-            </td>
-        </tr>
-    </table>
 
-    <div>
-        <form id="bookForm" class="data_form">
+    <div class="form-container">
+        <div class="data-section">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+        </div>
 
-            <table class="data_table">
+        <div class="data-section">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+
+        <div class="data-section">
+            <table>
                 <tr>
                     <td>
                         <label class="qTitle">Book Format:</label>
                     </td>
                     <td>
-                        <input type="checkbox" id="physical" name="format" value="physical" class="selective">
-                        <label for="physical">Physical Copy</label>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="physical" name="format" value="physical" class="selective">
+                            <label for="physical">Physical Copy</label>
+                        </div>
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
                     <td>
-                        <input type="checkbox" id="ebook" name="format" value="ebook" class="selective">
-                        <label for="ebook">E-book</label>
+                    </td>
+                    <td>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="ebook" name="format" value="ebook" class="selective">
+                            <label for="ebook">E-book</label>
+                        </div>
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
                     <td>
-                        <input type="checkbox" id="audiobook" name="format" value="audiobook" class="selective">
-                        <label for="audiobook">Audiobook</label>
+                    </td>
+                    <td>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="audiobook" name="format" value="audiobook" class="selective">
+                            <label for="audiobook">Audiobook</label>
+                        </div>
                     </td>
                 </tr>
             </table>
-            <table class="data_table">
+        </div>
+
+        <div class="data-section">
+            <table>
                 <tr>
                     <td>
                         <label class="qTitle">Book Status:</label>
                     </td>
                     <td>
-                        <input type="radio" id="notStarted" name="status" value="notStarted" required class="selective">
-                        <label for="notStarted">Not Started</label>
-                        <br>
-                        <input type="radio" id="inProgress" name="status" value="inProgress" class="selective">
-                        <label for="inProgress">In Progress</label>
-                        <br>
-                        <input type="radio" id="completed" name="status" value="completed" class="selective">
-                        <label for="completed">Completed</label>
+                        <div class="radio-container">
+                            <input type="radio" id="notStarted" name="status" value="notStarted" required
+                                class="selective">
+                            <label for="notStarted">Not Started</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="radio-container">
+                            <input type="radio" id="inProgress" name="status" value="inProgress" class="selective">
+                            <label for="inProgress">In Progress</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="radio-container">
+                            <input type="radio" id="completed" name="status" value="completed" class="selective">
+                            <label for="completed">Completed</label>
+                        </div>
                     </td>
                 </tr>
             </table>
+        </div>
 
-            <div class="button_container">
-                <button id="submitButton" onclick="submitForm()">Send Data</button>
-            </div>
-        </form>
+        <div class="data-section">
+            <label for="purchase">Purchase Method:</label>
+            <select id="purchase" name="purchase">
+                <option value="online">Bought Online</option>
+                <option value="store">Bought In Store</option>
+            </select>
+        </div>
+
+        <div class="button_container">
+            <button id="submitButton" onclick="submitForm()">Send Data</button>
+        </div>
     </div>
+
     <button id="colorToggle">Toggle Color Style</button>
 
+    <script src="js/script.js"></script>
 </body>
-<script src="js/script.js"></script>
 
 </html>

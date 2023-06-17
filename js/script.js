@@ -6,7 +6,8 @@ function submitForm() {
         return format.nextElementSibling.textContent;
     });
     var status = document.querySelector('input[name="status"]:checked');
-
+    var purchaseMethod = document.getElementById("purchase");
+    var location = purchaseMethod.options[purchaseMethod.selectedIndex].text;
     if (author === "" || title === "" || selectedFormats.length === 0 || status === null) {
         alert("Please fill in all the fields.");
         return;
@@ -16,19 +17,22 @@ function submitForm() {
         author: author,
         title: title,
         formats: selectedFormats,
-        status: status.nextElementSibling.textContent
+        status: status.nextElementSibling.textContent,
+        location: location
     };
 
     var localStorageSubmissions = JSON.parse(localStorage.getItem("submissions")) || [];
     localStorageSubmissions.push(submission);
     localStorage.setItem("submissions", JSON.stringify(localStorageSubmissions));
+    displaySubmissions();
 }
 
-window.addEventListener("DOMContentLoaded", function() {
-    if (window.location.pathname === "/index.html") {
+function displaySubmissions() {
         var submissions = JSON.parse(localStorage.getItem("submissions")) || [];
         var lastSubmission = submissions[submissions.length - 1];
-
+        if (document.querySelector(".data_table")) {
+            document.querySelector(".data_table").remove();
+        }
         if (lastSubmission) {
             var table = document.createElement("table");
             table.classList.add("data_table");
@@ -57,10 +61,17 @@ window.addEventListener("DOMContentLoaded", function() {
             row4.appendChild(statusCell);
             table.appendChild(row4);
 
+
+            var row5 = document.createElement("tr");
+            var statusCell = document.createElement("td");
+            statusCell.textContent = "Location: " + lastSubmission.location;
+            row5.appendChild(statusCell);
+            table.appendChild(row5);
+
             document.body.appendChild(table);
         }
     }
-});
+
 document.getElementById("colorToggle").addEventListener("click", function() {
     document.body.classList.toggle("bright");
     document.body.classList.toggle("grayscale");
@@ -105,6 +116,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var statusCell = document.createElement("td");
         statusCell.textContent = submission.status;
+        row.appendChild(statusCell);
+
+        var statusCell = document.createElement("td");
+        statusCell.textContent = submission.location;
         row.appendChild(statusCell);
 
         tbody.appendChild(row);
